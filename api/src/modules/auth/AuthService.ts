@@ -1,13 +1,13 @@
-import { AuthRepository } from "./authRepository.js";
-import { User } from "./models/user.js";
+import { AuthRepository } from "./AuthRepository.js";
+import { User } from "./models/User.js";
 
 export class AuthService {
     private authRepository = new AuthRepository();
 
-    authUser () : string {
-        const dbUser = this.authRepository.getById();
+    authUser (email: string, password: string) : string {
+        const dbUser = this.authRepository.getByEmail(email);
         const user = User.ofDbUser(dbUser);
-        // create jwt with userData
+        // evaluate password and create jwt with userData
         const token = 'jwt'
         return token;
     }

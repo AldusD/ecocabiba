@@ -1,6 +1,12 @@
-import express, { Application } from 'express';
+import express, { type Application } from 'express';
+import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 
 
+
+// Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
+import './modules/auth/AuthRoutes.js';
+
+@AppRoutes
 export default class App {
   private app: Application;
   private port: number;

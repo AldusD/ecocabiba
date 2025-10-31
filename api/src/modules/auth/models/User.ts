@@ -1,5 +1,5 @@
 import { UserRolerEnum } from "../../shared/enums/userRolesEnum.js";
-import type { UserSchema } from "./userSchema.js";
+import type { UserSchema } from "./UserSchema.js";
 
 export class User { // user has behavior, knows more stuff, userSchema is about connecting to prisma TODO move that to readme
     private id?: number;
