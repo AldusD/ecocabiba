@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script> <!--this makes qrcode scanner work-->
+    <script>
+        let xp_number = 100
+        let xp_string = `${xp_number} / 2000 XP`
+        let bar_percentage = 5
+    </script>
 </head>
 <body>
 
@@ -71,9 +77,47 @@
                 <h3>Ação de Reciclagem</h3>
                 <p>Leve seus recicláveis a um centro de coleta e registre para ganhar XP.</p>
                 <!-- Clicar no botao leva para o qr code do celular-->
-                <button class="btn btn-action-register">
+                 <script>
+                    function show_scanner() {
+                        document.getElementById("reader").style.display = "block"
+                    }
+                 </script>
+                <button class="btn btn-action-register" onclick="show_scanner()">
                     Registrar Ação Ecológica
                 </button>
+
+            </div>
+            <div id="reader" width="600px" style ="display:none" >
+                <script>
+                    function onScanSuccess(decodedText, decodedResult) {
+                    // handle the scanned code
+                        console.log(`Code matched = ${decodedText}`, decodedResult);
+                        if (decodedText == "http://en.m.wikipedia.org"){
+                            xp_number += 500
+                            xp_string = `${xp_number} / 2000 XP`
+                            document.getElementById("xp_txt").innerHTML = xp_string
+
+                            bar_percentage = xp_number/2000*100
+                            document.getElementById("xp_bar").style = `width: ${bar_percentage}%;`
+
+                        }
+                    }
+
+                    function onScanFailure(error) {
+                      //quando acontece uma falha
+                        //console.warn(`Code scan error = ${error}`);
+                    }
+
+                    let html5QrcodeScanner = new Html5QrcodeScanner(
+                      "reader",
+                      { fps: 10, qrbox: {width: 250, height: 250} },
+                      /* verbose= */ false);
+                    html5QrcodeScanner.render(onScanSuccess, onScanFailure); // this leads to the functions of sucess and failure
+
+                </script>
+
+
+
             </div>
         </section>
     </main>
@@ -86,9 +130,9 @@
             
             <div class="xp-container">
                 <div class="xp-track">
-                    <div class="xp-fill" style="width: 50%;"></div>
+                    <div class="xp-fill" id="xp_bar" style="width: 5%;"></div>
                 </div>
-                <span class="xp-text">1000 / 2000 XP</span>
+                <span class="xp-text" id="xp_txt">0 / 2000 XP</span>
             </div>
         </section>
 
