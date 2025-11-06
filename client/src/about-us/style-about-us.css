@@ -1,0 +1,270 @@
+@import url("../variables.css"); /* cores */
+
+:root {
+    --cor-texto-secundario: #555555;
+    --cor-acento-claro: #E0E0E0;
+    --cor-borda: #D0D0D0;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    background-color: var(--cor-card-fundo);
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--cor-acao-principal);
+}
+
+/* header*/
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px;
+    border-bottom: 1px solid var(--cor-acento-claro);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    color: var(--cor-acao-principal);
+    /* falta adicionar imagem pra logo*/
+}
+.logo-area h1 { font-size: 1.5em; font-weight: 700; }
+.logo-area .logo-icon { font-size: 1.5em; }
+
+nav a {
+    text-decoration: none;
+    color: var(--cor-texto-secundario);
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--cor-acao-principal);
+}
+
+.about-us-container {
+    max-width: 100%; 
+}
+
+.content-block {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center; 
+}
+.wide-content { max-width: 950px; }
+
+.about-us-container section {
+    padding: 100px 0;
+}
+
+.section-pre-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-acao-principal);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 150px 20px 100px 20px;
+    background-image: url("../assets/recife-pe.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: slideInFromTop 0.7s ease-out forwards;
+}
+
+.hero-section .main-title {
+    font-size: 4rem; 
+    font-weight: 600; 
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    line-height: 1.1;
+    color: var(--cor-texto-principal);
+}
+
+.hero-section .hero-slogan {
+    font-size: 1.2rem;
+    color: var(--cor-texto-principal);
+    font-style: italic;
+    font-weight: 600;
+}
+
+.mission-section {
+    background-color: var(--cor-card-fundo);
+    border-bottom: 1px solid var(--cor-acento-claro);
+    animation: slideInFromTop 0.8s ease-out forwards;
+}
+
+.mission-section p {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    color: var(--cor-texto-secundario);
+}
+
+.challenge-section {
+    padding: 120px 20px;
+    background-image: url("../assets/leafs.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: slideInFromTop 0.9s ease-out forwards;
+}
+
+.challenge-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.challenge-list {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+.challenge-list article {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--cor-card-fundo);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.challenge-list h3 {
+    color: var(--cor-progresso-fundo);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.solution-section {
+    background-color: var(--cor-card-fundo);
+    border-top: 1px solid var(--cor-acento-claro);
+    text-align: center;
+    animation: slideInFromTop 1s ease-out forwards;
+}
+
+.solution-intro {
+    font-size: 1.2rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 40px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+    display: inline-block; 
+    text-align: left;
+}
+
+.feature-list li {
+    font-size: 1.1rem;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--cor-acento-claro);
+    color: var(--cor-texto-principal);
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.feature-list strong {
+    color: var(--cor-progresso-fundo);
+    font-weight: 700;
+}
+
+.team-section {
+    background-color: var(--cor-primaria-fundo);
+    padding: 80px 0 100px 0;
+    animation: slideInFromTop 1.1s ease-out forwards;
+}
+
+.team-section p {
+    font-size: 1.1rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 30px;
+}
+
+.team-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px 30px;
+}
+
+.team-list li {
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+    padding: 5px 10px;
+    border: 1px solid var(--cor-acao-clara);
+    border-radius: 5px;
+}
+
+@keyframes slideInFromTop {
+    0% {
+
+        transform: translateX(-100%); 
+        opacity: 0; 
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-section .main-title {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    .challenge-list {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 550px) {
+    .hero-section .main-title {
+        font-size: 2.2rem;
+    }
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    nav a { margin: 0 10px; }
+    
+    .about-us-container section {
+        padding: 60px 0;
+    }
+    .challenge-list article {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCapiba Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="dashboard-container">
+    
+    <header class="app-header">
+        <div class="logo">
+            <h1>EcoCapiba</h1>
+        </div>
+        <div class="status-ofensiva">
+            <span class="dias-ofensiva">0 dias de ofensiva</span>
+            <div class="medidor-fogo">
+                <!-- icone fogo generico -->
+                <i class="fa-solid fa-fire status-fire-icon"></i>
+                <span class="status-u">
+                    U
+                <!-- Foto do usuário -->
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="card quiz-section">
+            <h2>Quizzes Ecológicos</h2>
+            
+            <div class="quiz-item quiz-active">
+                <div class="quiz-info">
+                    <p>Seu próximo desafio:</p>
+                    <h3>O Ciclo do Plástico</h3>
+                </div>
+                <button class="btn btn-primary">Começar</button>
+                <!-- botao leva para o url do quiz que sera feito -->
+            </div>
+
+            <p class="fila-title">Próximos na fila:</p>
+            
+            <div class="quiz-item locked">
+                <div class="quiz-info">
+                    <h4>Reciclagem de Vidro</h4>
+                </div>
+                <div class="quiz-undone">
+                    <span class="locked-text">A ser iniciado</span>
+                </div>
+            </div>
+
+            <div class="quiz-item locked">
+                <div class="quiz-info">
+                    <h4>Compostagem Caseira</h4>
+                </div>
+                <div class="quiz-undone">
+                    <span class="locked-text">A ser iniciado</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card action-section">
+            <div class="action-content">
+                <div class="map-pin">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3>Ação de Reciclagem</h3>
+                <p>Leve seus recicláveis a um centro de coleta e registre para ganhar XP.</p>
+                <!-- Clicar no botao leva para o qr code do celular-->
+                <button class="btn btn-action-register">
+                    Registrar Ação Ecológica
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <aside>
+        <section class="card card-level-highlight">
+            <h3>Nível da Conta</h3>
+            <h2>Nível 0: Cidadão</h2>
+            <p class="continue-text">Continue assim para desbloquear novas recompensas!</p>
+            
+            <div class="xp-container">
+                <div class="xp-track">
+                    <div class="xp-fill" style="width: 50%;"></div>
+                </div>
+                <span class="xp-text">1000 / 2000 XP</span>
+            </div>
+        </section>
+
+        <section class="card share-section">
+            <h3>Compartilhe e Ganhe!</h3>
+            <p>Convide seus amigos e ganhe recompensas juntos.</p>
+            
+            <div class="share-link-box">
+                <!-- link provisório -->
+                eccocapiba.com/convite/1a2b3c
+            </div>
+
+            <div class="social-buttons">
+                <a href="#" class="btn btn-social btn-whatsapp" id="whatsapp-share" role="button" aria-label="Compartilhar no WhatsApp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" class="btn btn-social btn-instagram" id="instagram-share" role="button" aria-label="Compartilhar no Instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </section>
+    </aside>
+
+</div>
+</body>
+</html>
