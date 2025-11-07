@@ -1,0 +1,138 @@
+/* Variáveis de cor */
+:root {
+    --cor-acao-principal: #4CAF50;
+    --cor-texto-principal: #f4f4f4;
+    --cor-card-fundo: #1A1A1A;
+    --cor-card-destaque: #262626;
+    --cor-borda-input: #4CAF50;
+    --cor-borda-input-foco: #1E7B32;
+}
+
+/* Estilos Globais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    background-color: #011318;
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    background-color: var(--cor-card-fundo);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+}
+
+.logo h1 {
+    color: var(--cor-acao-principal);
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o formulário */
+h2 {
+    text-align: center;
+    color: var(--cor-texto-principal);
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: var(--cor-texto-principal);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--cor-borda-input);
+    border-radius: 5px;
+    background-color: #262626;
+    color: var(--cor-texto-principal);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--cor-borda-input-foco);
+    outline: none;
+}
+
+/* Botões */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: var(--cor-acao-principal);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Links no rodapé */
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.footer-links a {
+    color: var(--cor-texto-principal);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para Mobile */
+@media (max-width: 600px) {
+    .card {
+        padding: 20px;
+    }
+
+    .logo h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .input-group input {
+        font-size: 0.9em;
+    }
+}
