@@ -1,3 +1,5 @@
+<!--this page heavily borrows from others in order to meet a deadline, class names are mostly incoherent, due to the fact they were made to fit another page.-->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head> <!--copied from home, might have redundancies-->
@@ -25,13 +27,57 @@
                 <div class="quiz-info">
                     <h3>300 XP</h3>
                 </div>
-                <button class="btn btn-primary">Gerar</button>
-                <!-- botao leva para o url do quiz que sera feito -->
-                 <img src="../assets/300_xp_qrcode.png" style="" class="qrcode">
-            </div>
+                <button class="btn btn-primary" id="button1" onclick="show_qr1()">Gerar</button>
 
+                <script>
+                    function show_qr1() {
+                        document.getElementById("qr_image").style.display = "block"
+                        document.getElementById("qr_image").src = "../assets/300_xp_qrcode.png"
+                        document.getElementById("result_phrase").textContent = "Escaneie aqui:"
+                    }
+                </script>
+            </div>
+            <div class="quiz-item quiz-active">
+                <div class="quiz-info">
+                    <h3>1000 XP</h3>
+                </div>
+                <button class="btn btn-primary" id="button2" onclick="show_qr2()">Gerar</button>
+
+                <script>
+                    function show_qr2() {
+                        document.getElementById("qr_image").style.display = "block"
+                        document.getElementById("qr_image").src = "../assets/1000_xp_qrcode.png"
+                        document.getElementById("result_phrase").textContent = "Escaneie aqui:"
+                    }
+                </script>
+            </div>
+            <div class="quiz-item quiz-active">
+                <div class="quiz-info">
+                    <h3>2500 XP</h3>
+                </div>
+                <button class="btn btn-primary" id="button3" onclick="show_qr3()">Gerar</button>
+
+                <script>
+                    function show_qr3() {
+                        document.getElementById("qr_image").style.display = "block"
+                        document.getElementById("qr_image").src = "../assets/2500_xp_qrcode.png"
+                        document.getElementById("result_phrase").textContent = "Escaneie aqui:"
+                    }
+                </script>
+            </div>
     
+    </section>
+
+    <aside>
+        <section class="card quiz-section">
+            <div class="quiz-item quiz-active">
+                <h3 id="result_phrase">Selecione seu QR Code</h3>
+                <img id="qr_image" src="../assets/300_xp_qrcode.png" class="qrcode" style ="display:none">
+
+            </div>
         </section>
+    </aside>
+
 </div>
 
 </body>
