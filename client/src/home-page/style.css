@@ -1,0 +1,321 @@
+@import url("../variables.css"); /* Cores */
+
+/* variaveis locais */
+:root {
+    --cor-status-fogo: #FF6B00; 
+    --cor-social-whatsapp: #25D366;
+    --cor-bloqueado-texto: #A9A9A9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+body {
+    background-color: #011318;
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+}
+
+/* css grid tirado do gemini */
+.dashboard-container {
+    display: grid;
+    /* 2 partes para conteúdo principal, 1 parte para barra lateral */
+    grid-template-columns: 2fr 1fr; 
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "main-content sidebar";
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+header { grid-area: header; }
+main { grid-area: main-content; }
+aside { grid-area: sidebar; }
+
+/* header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    color: var(--cor-acao-principal);
+    /* Falta criar foto da logo */
+}
+
+.status-ofensiva {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: aliceblue;
+}
+
+.medidor-fogo {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-status-fogo);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    position: relative;
+    font-size: 0.8em;
+    /* icone tirado do gemini */
+}
+.status-fire-icon {
+    font-size: 1.1em;
+    position: absolute;
+    top: -5px; 
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fce205; /* Cor amarela do fogo */
+}
+.status-u {
+    margin-top: 5px; /* Ajuste para o 'U' ficar centralizado após o fogo */
+}
+
+/* Barra de XP (Bloco todo de xp) */
+
+.card {
+    background-color: var(--cor-card-fundo);
+    border-radius: var(--border-radius-base);
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Nível da conta */
+.card-level-highlight {
+    background-color: var(--cor-progresso-fundo);
+    color: var(--cor-card-fundo); 
+}
+
+.card-level-highlight h2,
+.card-level-highlight h3,
+.card-level-highlight p {
+    color: var(--cor-card-fundo);
+    margin-bottom: 10px;
+}
+
+.card-level-highlight h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+/* Barra de Progresso XP) */
+.xp-container {
+    margin-top: 15px;
+}
+
+.xp-track {
+    background-color: rgba(255, 255, 255, 0.3); 
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.xp-fill {
+    height: 100%;
+    background-color: var(--cor-acao-principal);
+    border-radius: 5px;
+    /* Transição */
+    transition: width 0.5s ease;
+}
+
+.xp-text {
+    font-size: 0.9em;
+    font-weight: 600;
+    display: block;
+    text-align: right;
+    color: var(--cor-card-fundo);
+}
+
+.quiz-section h2 {
+    margin-bottom: 15px;
+}
+
+.quiz-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-base);
+}
+
+/* Estilo para item ativo (com borda de destaque) */
+.quiz-active {
+    border: 1px solid var(--cor-acao-clara);
+    padding: 20px 15px;
+}
+
+.quiz-info p {
+    font-size: 0.9em;
+}
+
+/* Estilo para itens bloqueados/nao feitos */
+.quiz-item.locked {
+    background-color: var(--cor-primaria-fundo);
+    opacity: 0.6; 
+    pointer-events: none; 
+    border: 1px solid transparent;
+}
+
+.quiz-item.locked h4 {
+    color: var(--cor-texto-principal);
+}
+
+.quiz-undone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+}
+
+.locked-icon {
+    color: var(--cor-bloqueado-texto);
+    font-size: 0.9em;
+}
+.locked-text {
+    color: var(--cor-bloqueado-texto);
+    font-size: 0.9em;
+}
+
+/* Ação de Reciclagem */
+.action-section {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.map-pin {
+    background-color: white;
+    border: 5px solid var(--cor-acao-principal);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0 0 0 2px white;
+}
+.map-pin i {
+    color: var(--cor-acao-principal);
+    font-size: 1.5em;
+}
+
+
+/* Compatilhamento nas Redes */
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius-base);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--cor-acao-principal);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #558724; 
+}
+
+/* Botão Registrar Ação */
+.btn-action-register {
+    background-color: var(--cor-acao-principal);
+    color: white;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Área de Compartilhamento */
+.share-link-box {
+    background-color: var(--cor-primaria-fundo);
+    padding: 10px 15px;
+    border-radius: var(--border-radius-base);
+    font-size: 0.9em;
+    color: var(--cor-texto-principal);
+    text-align: center;
+    margin: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-social {
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+}
+
+.btn-whatsapp {
+    background-color: var(--cor-social-whatsapp);
+}
+
+.btn-instagram {
+    background-color: var(--cor-status-fogo); /* Usando a cor de acento */
+}
+
+
+/* Responsividade Mobile */
+
+
+@media (max-width: 850px) {
+   .dashboard-container {
+        /* Muda para uma única coluna */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "sidebar" /* Move a sidebar para cima do conteúdo principal */
+            "main-content";
+        gap: 20px;
+        padding: 0 15px;
+        margin-top: 20px;
+    }
+    
+   .app-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+   .social-buttons {
+        flex-direction: column;
+    }
+}

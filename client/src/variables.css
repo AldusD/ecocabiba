@@ -1,0 +1,10 @@
+/* cores compartilhadas entre os css */
+:root {
+    --cor-primaria-fundo: #F7F7F7;
+    --cor-card-fundo: #FFFFFF;
+    --cor-acao-principal: #67A02C;
+    --cor-acao-clara: #75B03B;
+    --cor-progresso-fundo: #478426;
+    --cor-texto-principal: #333333;
+    --border-radius-base: 10px;
+}
