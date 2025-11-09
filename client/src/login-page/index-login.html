@@ -5,16 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoCapiba | Login</title>
     <link rel="stylesheet" href="style-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo-area">
+    <div class="login-container">
+    <section class="card login-card">
+        <div class="logo">
             <h1>EcoCapiba</h1>
         </div>
-        <nav>
-            <a href="index-login.html">Login</a>
-            <a href="../about-us/index-about-us.html" class="active">Sobre Nós</a>
-        </nav>
-    </header>
+        <h2>Entrar na sua conta</h2>
+
+        <!-- Formulário de Login -->
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Entrar</button>
+
+            <div class="footer-links">
+                <a href="#">Esqueceu sua senha?</a>
+                <a href="#">Criar uma conta</a>
+            </div>
+        </form>
+
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                window.location.href = "../home-page/index.html"
+            })
+        </script>
+
+    </section>
+</div>
 </body>
