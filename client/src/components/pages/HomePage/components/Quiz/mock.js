@@ -58,7 +58,7 @@ const questionsMock = [
     },
 ];
 
-export const quizMock = {
+export default {
     type: enums.QUIZ_TYPES.HEALTH,
     questions: questionsMock,
 };
