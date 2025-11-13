@@ -10,6 +10,7 @@
     "module": "nodenext",
     "target": "esnext",
     "types": [],
+    "allowJs": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -40,5 +41,15 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+    
+  },
+  "exclude": [
+    "node_modules",
+    "eslint.config.js",
+    "vite.config.js"
+  ],
+  "include": [
+    "src"
+  ]
+  
 }
