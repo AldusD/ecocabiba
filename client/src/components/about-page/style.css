@@ -1,4 +1,4 @@
-@import url("../variables.css"); /* cores */
+@import url("../../variables.css"); /* cores */
 
 :root {
     --cor-texto-secundario: #555555;
@@ -87,7 +87,7 @@ nav a:hover, nav a.active {
 .hero-section {
     text-align: center;
     padding: 150px 20px 100px 20px;
-    background-image: url("../assets/recife-pe.webp");
+    background-image: url("../../assets/recife-pe.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,7 +124,7 @@ nav a:hover, nav a.active {
 
 .challenge-section {
     padding: 120px 20px;
-    background-image: url("../assets/leafs.jpg");
+    background-image: url("../../assets/leafs.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
