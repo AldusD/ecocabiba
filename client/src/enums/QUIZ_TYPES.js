@@ -1,3 +1,3 @@
 export default Object.freeze({
-    HEALTH: 1
+    HEALTH: "Ecologia e Saúde" // todo change for actual types
 });

@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import enums from "../../../../../enums/index";
-import styles from "./styles";
+import { Options, QuizStyles, Option, Filter } from "./styles";
 import quizMock from "./mock";
+import Timer from "./Timer";
+import DEFAULT_IMAGE from "../../../../../assets/nature.png";
 
 export default function Quiz() {
+  const TIME_TO_NEXT_QUESTION = 1500;
+  const TIME_TO_ANSWER = 3; // todo roque 30
+  const WRONG_FEEDBACK = "❌ Resposta incorreta!";
+  const CORRECT_FEEDBACK = "🎉 Parabéns! Resposta correta!";
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [correctCount, setCorrectCount] = useState(0);
   const [feedback, setFeedback] = useState("");
+  const [imageStr, setImageStr] = useState();
+  const [timeout, setTimeout] = useState(false);
 
   const [quizData, setQuizData] = useState(quizMock);
 
   const currentQuestion = quizData.questions[currentIndex];
   const isLastQuestion = currentIndex === quizData.questions.length - 1;
+
+  function choiceImage() {
+    // todo handle image per type
+    setImageStr(DEFAULT_IMAGE);
+  }
+
+  function getNextQuestion() {
+      setTimeout(() => {
+      setSelected(null);
+      setFeedback("");
+      if (!isLastQuestion) {
+        setCurrentIndex(currentIndex + 1);
+      }
+    }, TIME_TO_NEXT_QUESTION);
+  }
 
   function handleAnswer(option) {
     if (selected !== null) return; // evita clicar duas vezes
@@ -21,85 +45,85 @@ export default function Quiz() {
 
     if (option.isCorrect) {
       setCorrectCount(correctCount + 1);
-      setFeedback("🎉 Parabéns! Resposta correta!");
+      setFeedback(CORRECT_FEEDBACK);
     } else {
-      setFeedback("❌ Resposta incorreta!");
+      setFeedback(WRONG_FEEDBACK);
     }
 
-    // avança após 1.5s
-    setTimeout(() => {
-      setSelected(null);
-      setFeedback("");
-      if (!isLastQuestion) {
-        setCurrentIndex(currentIndex + 1);
-      }
-    }, 1500);
+    getNextQuestion();
   }
 
-  function render() {
+  function handleOptionClass() {
+    if (!select) return "";
+    if (option.isCorrect) return "correct-highlighting";
+    if (option == selected) return "wrong-highlighting";
+  }
+
+  useEffect(() => {
+      choiceImage();
+    }, [])
+
+  useEffect(() => {
+    if (timeout) {
+      setSelected(-1);
+      setFeedback(WRONG_FEEDBACK);
+      setTimeout(false);
+      getNextQuestion();
+    }
+  }, [timeout])
+  
+  function renderSC() {
     if (!currentQuestion) {
     return (
-      <div style={styles.container}>
+      <QuizStyles>
         <h2 style={{ color: enums.COLORS.PRIMARY_TEXT }}>Fim do Quiz!</h2>
         <p style={{ color: enums.COLORS.PRIMARY_TEXT }}>
           Você acertou {correctCount} de {quizData.questions.length} perguntas.
         </p>
-      </div>
+      </QuizStyles>
     );
-  }
+    }
 
-  return (
-    <div style={styles.container}>
-      <h2 style={{ color: enums.COLORS.PRIMARY_TEXT }}>
-        {currentQuestion.title}
-      </h2>
-
-      <div style={styles.optionsContainer}>
-        {currentQuestion.questions.map((opt, idx) => {
-          let bg = enums.COLORS.CARD_BG;
-
-          if (selected) {
-            if (opt === selected && opt.isCorrect) bg = enums.COLORS.LIGHT_ACTION;
-            else if (opt === selected && !opt.isCorrect) bg = "#E57373"; // vermelho
-            else if (opt.isCorrect) bg = enums.COLORS.LIGHT_ACTION;
-          }
-
-          return (
-            <button
-              key={idx}
-              style={{
-                ...styles.optionButton,
-                backgroundColor: bg,
-                color: enums.COLORS.PRIMARY_TEXT,
-              }}
-              onClick={() => handleAnswer(opt)}
+    return (
+      <QuizStyles>
+        <div className="title">
+          <h2>{quizData.type}</h2>
+          <Timer triggerTimeout={() => setTimeout(true)} startTime={TIME_TO_ANSWER} />
+        </div>
+        <img src={imageStr} alt="type_img" />
+        <Options>
+          <p>{currentQuestion.title}</p>
+          {currentQuestion.questions.map((option, i) => {
+            return(
+            <Option
+              key={i}
+              onClick={() => handleAnswer(option)}
               disabled={selected !== null}
             >
-              {opt.text}
-            </button>
-          );
-        })}
-      </div>
+              {option.text}
+            </Option>)
+          })}
+        </Options>
 
-      {feedback && (
-        <div style={styles.feedback}>
-          <strong>{feedback}</strong>
+        {feedback && (
+          <div className="feedback">
+            <strong>{feedback}</strong>
+          </div>
+        )}
+
+        <div className="progress">
+          Pergunta {currentIndex + 1} / {quizData.questions.length}
         </div>
-      )}
-
-      <div style={styles.progress}>
-        Pergunta {currentIndex + 1} / {quizData.questions.length}
-      </div>
-    </div>
+      </QuizStyles>
   );
   }
 
   return (
-    <div style={styles.overlay} >
+    <Filter>
       {
-        render()
+        renderSC()
       }
-    </div>
+    </Filter>
     
   )
 }
