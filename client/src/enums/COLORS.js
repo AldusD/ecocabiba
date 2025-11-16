@@ -6,5 +6,12 @@ export default Object.freeze({
     LIGHT_ACTION: "#75B03B",
     PROGRESS_BG: "#478426",
     PRIMARY_TEXT: "#333333",
-    WRONG_RED: "#E57373"
+    WRONG_RED: "#E57373",
+    FIRE_STATUS: "#FF6B00",
+    WHATSAPP_BTN: "#25D366",
+    BLOCKED_TEXT: "#A9A9A9",
+    HOME_BG: "#011318",
+    SECONDARY_TEXT: "#555555",
+    HIGHLIGHT: "#E0E0E0",
+    BORDER: "#D0D0D0",
 });
