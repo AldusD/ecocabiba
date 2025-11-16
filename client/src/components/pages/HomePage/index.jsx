@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styles from "./styles";
 import Quiz from "./components/Quiz";
+import UserIndication from "./components/Quiz/UserIndication";
 
 export default function HomePage() {
     const [quizMode, setQuizMode] = useState(false);
@@ -10,6 +11,7 @@ export default function HomePage() {
             <h1>Home page</h1>
             <span onClick={() => {setQuizMode(true)}} >Responder Quiz</span>
             { quizMode ? <Quiz setQuizMode={setQuizMode} /> : <></> }
+            <UserIndication/>
         </div>
     )
 }
