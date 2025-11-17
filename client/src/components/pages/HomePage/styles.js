@@ -21,9 +21,21 @@ export const Dashboard = styled.div`
     margin: 40px auto;
     padding: 0 20px;
 
-    header { grid-area: header; }
+    header { 
+        grid-area: header;
+        color: #75B03B
+    }
     main { grid-area: main-content; }
     aside { grid-area: sidebar; }
+
+    status-fire-icon {
+        font-size: 1.1em;
+        position: absolute;
+        top: -5px; 
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fce205; /* Cor amarela do fogo */
+    }
 `;
 
 export const Card = styled.section`

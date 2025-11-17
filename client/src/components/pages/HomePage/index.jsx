@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import Calendar from "./components/Calendar"
 import {
     Dashboard,
     QuizSection,
@@ -30,7 +31,7 @@ export default function HomePage() {
   const [xp2500Claimed, setXp2500Claimed] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0); // to be changed to userdata
   const [currentTitle, setCurrentTitle] = useState("Cidadão"); // to be changed to userdata
-  const [currentStreak, setCurrentStreak] = useState(0); // to be changed to userdata
+  const [currentStreak, setCurrentStreak] = useState(3); // to be changed to userdata
   const [isScannerVisible, setIsScannerVisible] = useState(false);
   const readerRef = useRef(null);
   const scannerRef = useRef(null);
@@ -117,11 +118,9 @@ export default function HomePage() {
             <h1>Ecocapiba</h1>
             </div>
             <div className="status-ofensiva">
-            <span className="dias-ofensiva"> {currentStreak} dia{currentStreak!==1 ? 's': ''}  de ofensiva</span>
-            <div className="medidor-fogo">
-                {currentStreak >= 1 && <i className="fa-solid fa-fire status-fire-icon"></i>}
-                <span className="status-u">U</span>
-            </div>
+            <span className="dias-ofensiva"> 
+              <div className="medidor-fogo">{currentStreak >= 1 && <i className="fa-solid fa-fire status-fire-icon"></i>}</div>
+              {currentStreak} dia{currentStreak!==1 ? 's': ''}  de ofensiva</span>
             </div>
         </header>
 
@@ -231,6 +230,7 @@ export default function HomePage() {
                 </ButtonSocial>
             </SocialButtons>
             </Card>
+            <Card><Calendar></Calendar></Card>
         </aside>
         </Dashboard>
     </>
