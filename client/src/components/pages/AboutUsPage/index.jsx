@@ -24,8 +24,8 @@ export default function AboutUsPage(){
                     <h1>EcoCapiba</h1>
                 </div>
                 <nav>
-                    <a href="../login-page/index-login.html">Login</a>
-                    <a href="index-about-us.html" className="active">Sobre Nós</a>
+                    <a href="/home">Home</a>
+                    <a href="/" className="active">Sobre Nós</a>
                 </nav>
             </MainHeader>
 

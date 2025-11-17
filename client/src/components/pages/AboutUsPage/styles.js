@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import titleImage from "../../../assets/recife-pe.webp"
+import challengeImage from "../../../assets/leafs.jpg"
 
 export const MainHeader = styled.header`
     display: flex;
@@ -35,7 +37,7 @@ export const MainHeader = styled.header`
 export const HeroSection = styled.section`
     text-align: center;
     padding: 150px 20px 100px 20px;
-    background-image: url("../../assets/recife-pe.webp");
+    background-image: url(${titleImage});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -81,7 +83,7 @@ export const MissionSection = styled.section`
 
 export const ChallengeSection = styled.section`
     padding: 120px 20px;
-    background-image: url("../../assets/leafs.jpg");
+    background-image: url(${challengeImage});
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
