@@ -8,5 +8,6 @@ export default Object.freeze({
     PRIMARY_TEXT: "#333333",
     WRONG_RED: "#E57373",
     WHATSAPP: "#25D366",
+    INSTAGRAM: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
     FIRE_STATUS: "#FF6B00"
 });
