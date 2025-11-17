@@ -11,4 +11,14 @@ export class AuthService {
         const token = 'jwt'
         return token;
     }
+
+    registerUser(email: string, password: string, cpf: string, name: string, invitationCode: string) : string {
+        const dbUser = this.authRepository.getByEmail(email);
+        
+        if (dbUser === undefined) throw new Error("Email already registred!");
+
+        const user = this.authRepository.create(email, password, cpf, name, invitationCode);
+        const token = 'jwt';
+        return token;
+    }
 }

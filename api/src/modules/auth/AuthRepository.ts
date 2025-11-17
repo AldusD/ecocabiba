@@ -4,4 +4,7 @@ export class AuthRepository {
     getByEmail (email: string) : UserSchema {
         return new UserSchema(1, 'aa@aa.com', 'senha');
     }
+    create (email: string, password: string, cpf: string, name: string, invitationCode: string) : UserSchema {
+        return new UserSchema(1, 'aa@aa.com', 'senha');
+    }
 }
