@@ -1,10 +1,46 @@
-import { UserSchema } from "./models/UserSchema.js";
+import { PrismaClient, type User } from "../../generated/prisma/client.js";
 
 export class AuthRepository {
-    getByEmail (email: string) : UserSchema {
-        return new UserSchema(1, 'aa@aa.com', 'senha');
+    private prisma = new PrismaClient();
+
+    async getByEmail (email: string) : Promise<User | null> {
+        return await this.prisma.user.findUnique({
+            where: { email: email }
+        })
     }
-    create (email: string, password: string, cpf: string, name: string, invitationCode: string) : UserSchema {
-        return new UserSchema(1, 'aa@aa.com', 'senha');
+
+    async getById(id: string): Promise<User | null> {
+        return await this.prisma.user.findUnique({
+            where: { id }
+        });
+    }
+
+    async create (
+        email: string,
+        password: string,
+        cpf: string,
+        name: string,
+    ) : Promise<User | null>  {
+        return await this.prisma.user.create({
+            data: {
+                email: email,
+                password: password,
+                cpf: cpf,
+                name: name,
+            }
+        })
+    }
+
+    async update(id: string, data: Partial<User>): Promise<User> {
+        return await this.prisma.user.update({
+        where: { id },
+        data
+        });
+    }
+
+    async delete(id: string): Promise<User> {
+        return await this.prisma.user.delete({
+        where: { id }
+        });
     }
 }

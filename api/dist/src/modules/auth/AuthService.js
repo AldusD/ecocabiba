@@ -1,31 +1,22 @@
 import { AuthRepository } from "./AuthRepository.js";
 import { User } from "./models/User.js";
-
 export class AuthService {
-    private authRepository = new AuthRepository();
-
-    async authUser (email: string, password: string) : Promise<string> {
+    authRepository = new AuthRepository();
+    async authUser(email, password) {
         const dbUser = this.authRepository.getByEmail(email);
-        console.log('hi')
-        if (!dbUser) throw new Error("Invalid credentials!")
+        if (!dbUser)
+            throw new Error("Invalid credentials!");
         // evaluate password and create jwt with userData
-        const token = 'jwt'
+        const token = 'jwt';
         return token;
     }
-
-    async registerUser(
-        email: string,
-        password: string,
-        cpf: string,
-        name: string
-    ) : Promise<string> {
+    async registerUser(email, password, cpf, name) {
         const dbUser = await this.authRepository.getByEmail(email);
-        
-        if (dbUser) throw new Error("Email already registered!");
-
+        if (dbUser)
+            throw new Error("Email already registered!");
         const user = this.authRepository.create(email, password, cpf, name);
         const token = 'jwt';
-
         return token;
     }
 }
+//# sourceMappingURL=AuthService.js.map
