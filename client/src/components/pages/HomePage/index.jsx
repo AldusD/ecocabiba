@@ -9,7 +9,7 @@ export default function HomePage() {
         <div style={styles.page}>
             <h1>Home page</h1>
             <span onClick={() => {setQuizMode(true)}} >Responder Quiz</span>
-            { quizMode ? <Quiz setQuizMode={setQuizMode} /> : <></> }
+            { quizMode ? <Quiz closeQuiz={() => setQuizMode(false)} /> : <></> }
         </div>
     )
 }

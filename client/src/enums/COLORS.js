@@ -6,5 +6,5 @@ export default Object.freeze({
     LIGHT_ACTION: "#75B03B",
     PROGRESS_BG: "#478426",
     PRIMARY_TEXT: "#333333",
-    WRONG_RED: "#E57373"
+    WRONG_RED: "#EF5350"
 });

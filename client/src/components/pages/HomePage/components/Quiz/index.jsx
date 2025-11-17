@@ -1,85 +1,79 @@
 import { useEffect, useState } from "react";
 import enums from "../../../../../enums/index";
-import { Options, QuizStyles, Option, Filter } from "./styles";
+import { Options, QuizStyles, Option, Filter, QuizReport } from "./styles";
 import quizMock from "./mock";
 import Timer from "./Timer";
-import DEFAULT_IMAGE from "../../../../../assets/nature.png";
+import controller, { ANSWER_BENCHMARK, CAPIBAS_PER_QUIZ, TIME_TO_ANSWER, XP_PER_QUIZ } from "./controller";
+import Icons from "../../../../shared/Icons";
 
-export default function Quiz() {
-  const TIME_TO_NEXT_QUESTION = 1500;
-  const TIME_TO_ANSWER = 3; // todo roque 30
-  const WRONG_FEEDBACK = "❌ Resposta incorreta!";
-  const CORRECT_FEEDBACK = "🎉 Parabéns! Resposta correta!";
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Quiz({ closeQuiz }) {
   const [selected, setSelected] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
+  const [timeEnded, setTimeEnded] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [imageStr, setImageStr] = useState();
-  const [timeout, setTimeout] = useState(false);
+  const [quizData, setQuizData] = useState(null);
 
-  const [quizData, setQuizData] = useState(quizMock);
-
-  const currentQuestion = quizData.questions[currentIndex];
-  const isLastQuestion = currentIndex === quizData.questions.length - 1;
-
-  function choiceImage() {
-    // todo handle image per type
-    setImageStr(DEFAULT_IMAGE);
-  }
-
-  function getNextQuestion() {
-      setTimeout(() => {
-      setSelected(null);
-      setFeedback("");
-      if (!isLastQuestion) {
-        setCurrentIndex(currentIndex + 1);
-      }
-    }, TIME_TO_NEXT_QUESTION);
-  }
-
-  function handleAnswer(option) {
-    if (selected !== null) return; // evita clicar duas vezes
-
-    setSelected(option);
-
-    if (option.isCorrect) {
-      setCorrectCount(correctCount + 1);
-      setFeedback(CORRECT_FEEDBACK);
-    } else {
-      setFeedback(WRONG_FEEDBACK);
-    }
-
-    getNextQuestion();
-  }
-
-  function handleOptionClass() {
-    if (!select) return "";
-    if (option.isCorrect) return "correct-highlighting";
-    if (option == selected) return "wrong-highlighting";
-  }
+  const {
+    choiceImage,
+    handleAnswer,
+    randomizeQuiz,
+    handleOptionClass,
+    handleTimeEnded,
+    sendQuizAttempt
+  } = controller({
+    selected, setSelected, 
+    feedback, setFeedback,
+    currentIndex, setCurrentIndex,
+    correctCount, setCorrectCount,
+    imageStr, setImageStr,
+    timeEnded, setTimeEnded,
+    isLastQuestion: () => {currentIndex === quizData.questions.length - 1}
+  });
 
   useEffect(() => {
+      setQuizData(randomizeQuiz(quizMock));
       choiceImage();
     }, [])
 
   useEffect(() => {
-    if (timeout) {
-      setSelected(-1);
-      setFeedback(WRONG_FEEDBACK);
-      setTimeout(false);
-      getNextQuestion();
-    }
-  }, [timeout])
+    handleTimeEnded();
+  }, [timeEnded])
   
-  function renderSC() {
-    if (!currentQuestion) {
+  useEffect(() => {
+    if (quizData && !quizData.questions[currentIndex]) {
+      sendQuizAttempt();
+    }
+  }, [currentIndex])
+
+  function render() {
+    if (!quizData) return <></>
+    if (!quizData.questions[currentIndex]) {
     return (
       <QuizStyles>
-        <h2 style={{ color: enums.COLORS.PRIMARY_TEXT }}>Fim do Quiz!</h2>
-        <p style={{ color: enums.COLORS.PRIMARY_TEXT }}>
-          Você acertou {correctCount} de {quizData.questions.length} perguntas.
-        </p>
+        <div className="title">
+          <h2>{quizData.type}</h2>
+          <Icons.QUIT className="quit" onClick={closeQuiz} />
+        </div>
+        <img src={imageStr} alt="type_img" />
+        <QuizReport>
+          { correctCount >= ANSWER_BENCHMARK ?
+            <>
+              <h2 style={{ color: enums.COLORS.PRIMARY_TEXT }}>Quiz Concluido!</h2>
+              <p>Aguarde até amanhã para realizar outro!</p>
+              <strong>Voce recebeu {CAPIBAS_PER_QUIZ} moedas Capibas e {XP_PER_QUIZ} XP!</strong>
+            </> :
+            <>
+              <h2 style={{ color: enums.COLORS.PRIMARY_TEXT }}>Não foi dessa vez :(</h2>
+              <p>Volte amanhã para uma nova tentativa</p>
+            </>
+          }
+          <Icons.FLAG className={correctCount >= ANSWER_BENCHMARK ? 'green' : 'red' } />
+          <p style={{ color: enums.COLORS.PRIMARY_TEXT }}>
+            Você acertou {correctCount} de {quizData?.questions.length} perguntas.
+          </p>
+        </QuizReport>
       </QuizStyles>
     );
     }
@@ -88,17 +82,19 @@ export default function Quiz() {
       <QuizStyles>
         <div className="title">
           <h2>{quizData.type}</h2>
-          <Timer triggerTimeout={() => setTimeout(true)} startTime={TIME_TO_ANSWER} />
+          <Timer key={currentIndex} triggerTimeEnded={() => setTimeEnded(true)} startTime={TIME_TO_ANSWER} />
         </div>
         <img src={imageStr} alt="type_img" />
         <Options>
-          <p>{currentQuestion.title}</p>
-          {currentQuestion.questions.map((option, i) => {
+          <p>{quizData.questions[currentIndex].title}</p>
+          {quizData.questions[currentIndex].options.map((option, i) => {
+            const classStr = handleOptionClass(option);
             return(
             <Option
               key={i}
               onClick={() => handleAnswer(option)}
               disabled={selected !== null}
+              className={classStr}
             >
               {option.text}
             </Option>)
@@ -121,7 +117,7 @@ export default function Quiz() {
   return (
     <Filter>
       {
-        renderSC()
+        render()
       }
     </Filter>
     
