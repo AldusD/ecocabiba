@@ -1,6 +1,7 @@
 import express, {} from 'express';
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 import { AuthRoutes } from './modules/auth/AuthRoutes.js';
+import { RecycleRoutes } from './modules/recycles/RecycleRoutes.js';
 import dotenv from 'dotenv';
 dotenv.config();
 // Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
@@ -9,6 +10,7 @@ export default class App {
     app;
     port;
     authRouter = new AuthRoutes();
+    recycleRouter = new RecycleRoutes();
     constructor(port = 8080) {
         this.app = express();
         this.port = port;
@@ -20,6 +22,7 @@ export default class App {
             res.json({ message: 'Hello World' });
         });
         this.app.use('/auth', this.authRouter.router);
+        this.app.use('/recycle', this.recycleRouter.router);
     }
     start() {
         this.app.listen(this.port, () => {

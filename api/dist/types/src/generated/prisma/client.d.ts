@@ -24,4 +24,9 @@ export { Prisma };
  *
  */
 export type User = Prisma.UserModel;
+/**
+ * Model RecyclesMade
+ *
+ */
+export type RecyclesMade = Prisma.RecyclesMadeModel;
 //# sourceMappingURL=client.d.ts.map

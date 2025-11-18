@@ -254,6 +254,7 @@ export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
     readonly User: "User";
+    readonly RecyclesMade: "RecyclesMade";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -266,7 +267,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user";
+        modelProps: "user" | "recyclesMade";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -344,6 +345,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        RecyclesMade: {
+            payload: Prisma.$RecyclesMadePayload<ExtArgs>;
+            fields: Prisma.RecyclesMadeFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.RecyclesMadeFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.RecyclesMadeFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                findFirst: {
+                    args: Prisma.RecyclesMadeFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.RecyclesMadeFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                findMany: {
+                    args: Prisma.RecyclesMadeFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>[];
+                };
+                create: {
+                    args: Prisma.RecyclesMadeCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                createMany: {
+                    args: Prisma.RecyclesMadeCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.RecyclesMadeCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>[];
+                };
+                delete: {
+                    args: Prisma.RecyclesMadeDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                update: {
+                    args: Prisma.RecyclesMadeUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                deleteMany: {
+                    args: Prisma.RecyclesMadeDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.RecyclesMadeUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.RecyclesMadeUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>[];
+                };
+                upsert: {
+                    args: Prisma.RecyclesMadeUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$RecyclesMadePayload>;
+                };
+                aggregate: {
+                    args: Prisma.RecyclesMadeAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateRecyclesMade>;
+                };
+                groupBy: {
+                    args: Prisma.RecyclesMadeGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.RecyclesMadeGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.RecyclesMadeCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.RecyclesMadeCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -386,6 +461,12 @@ export declare const UserScalarFieldEnum: {
     readonly password: "password";
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+export declare const RecyclesMadeScalarFieldEnum: {
+    readonly id: "id";
+    readonly userId: "userId";
+    readonly doneDate: "doneDate";
+};
+export type RecyclesMadeScalarFieldEnum = (typeof RecyclesMadeScalarFieldEnum)[keyof typeof RecyclesMadeScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -407,6 +488,14 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>;
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
 /**
  * Reference to a field of type 'Int'
  */
@@ -500,6 +589,7 @@ export interface PrismaClientOptions {
 }
 export type GlobalOmitConfig = {
     user?: Prisma.UserOmit;
+    recyclesMade?: Prisma.RecyclesMadeOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

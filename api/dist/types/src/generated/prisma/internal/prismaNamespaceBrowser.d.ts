@@ -42,6 +42,7 @@ export declare const AnyNull: {
 };
 export declare const ModelName: {
     readonly User: "User";
+    readonly RecyclesMade: "RecyclesMade";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -59,6 +60,12 @@ export declare const UserScalarFieldEnum: {
     readonly password: "password";
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+export declare const RecyclesMadeScalarFieldEnum: {
+    readonly id: "id";
+    readonly userId: "userId";
+    readonly doneDate: "doneDate";
+};
+export type RecyclesMadeScalarFieldEnum = (typeof RecyclesMadeScalarFieldEnum)[keyof typeof RecyclesMadeScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

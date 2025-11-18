@@ -1,7 +1,7 @@
 import express, { type Application } from 'express';
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 import {AuthRoutes} from './modules/auth/AuthRoutes.js'
-
+import { RecycleRoutes } from './modules/recycles/RecycleRoutes.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -9,10 +9,12 @@ dotenv.config();
 import './modules/auth/AuthRoutes.js';
 
 
+
 export default class App {
   private app: Application;
   private port: number;
   private authRouter = new AuthRoutes();
+  private recycleRouter = new RecycleRoutes()
 
   constructor(port = 8080) {
     this.app = express();
@@ -26,6 +28,7 @@ export default class App {
       res.json({ message: 'Hello World' });
     });
     this.app.use('/auth', this.authRouter.router);
+    this.app.use('/recycle', this.recycleRouter.router)
   }
 
   start() {

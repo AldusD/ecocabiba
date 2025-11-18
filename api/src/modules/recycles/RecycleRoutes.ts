@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { RecycleController } from "./RecycleController.js";
 
-export class AuthRoutes {
+export class RecycleRoutes {
     public router = Router();
-    private authController = new RecycleController();
+    private recycleController = new RecycleController();
 
     constructor () {
-        this.router.post('/check-recycle',(req,res) => this.authController.checkRecycle(req,res));
+        this.router.post('/check-recycle',(req,res) => this.recycleController.checkRecycle(req,res));
     }
 }

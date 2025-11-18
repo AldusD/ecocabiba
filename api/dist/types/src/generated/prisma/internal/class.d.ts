@@ -122,6 +122,17 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get user(): Prisma.UserDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.recyclesMade`: Exposes CRUD operations for the **RecyclesMade** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more RecyclesMades
+      * const recyclesMades = await prisma.recyclesMade.findMany()
+      * ```
+      */
+    get recyclesMade(): Prisma.RecyclesMadeDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(dirname: string): PrismaClientConstructor;
 //# sourceMappingURL=class.d.ts.map
