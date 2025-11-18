@@ -5,25 +5,25 @@ export class AuthController {
     constructor(authService = new AuthService()) {
         this.authService = authService;
     }
-    login(req, res) {
+    async login(req, res) {
         try {
             const { email, password } = req.body;
-            const token = this.authService.authUser(email, password);
-            res.json({ token });
+            const token = await this.authService.authUser(email, password);
+            res.status(200).json({ token });
         }
         catch {
             res.status(400).send({ error: "Invalid credentials" });
         }
     }
     ;
-    register(req, res) {
+    async register(req, res) {
         try {
             const { email, password, cpf, name } = req.body;
-            const token = this.authService.registerUser(email, password, cpf, name);
+            const token = await this.authService.registerUser(email, password, cpf, name);
             res.json({ token });
         }
         catch (err) {
-            res.status(400).send({ error: err });
+            res.status(400).send({ error: err.message });
         }
     }
 }

@@ -1,15 +1,19 @@
 import { AuthRepository } from "./AuthRepository.js";
-import { User } from "./models/User.js";
+import { generateAccessToken } from "../../utils/jwt.utils.js"
+import bcrypt from "bcrypt";
 
 export class AuthService {
     private authRepository = new AuthRepository();
 
     async authUser (email: string, password: string) : Promise<string> {
-        const dbUser = this.authRepository.getByEmail(email);
-        console.log('hi')
-        if (!dbUser) throw new Error("Invalid credentials!")
-        // evaluate password and create jwt with userData
-        const token = 'jwt'
+        const dbUser = await this.authRepository.getByEmail(email);
+
+        if (!dbUser || !await bcrypt.compare(password, dbUser.password)) {
+            throw new Error("Invalid credentials!");
+        }
+        const userId = dbUser.id;
+
+        const token = generateAccessToken(userId);
         return token;
     }
 
@@ -22,10 +26,13 @@ export class AuthService {
         const dbUser = await this.authRepository.getByEmail(email);
         
         if (dbUser) throw new Error("Email already registered!");
+        
+        password = await bcrypt.hash(password, 10);
+        console.log('hi')
 
-        const user = this.authRepository.create(email, password, cpf, name);
-        const token = 'jwt';
-
+        const user = await this.authRepository.create(email, password, cpf, name);
+        
+        const token = generateAccessToken(user.id);
         return token;
     }
 }

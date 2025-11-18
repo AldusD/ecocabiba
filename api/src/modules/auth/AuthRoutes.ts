@@ -2,7 +2,6 @@ import { Router } from "express";
 import { AuthController } from "./AuthController.js";
 import { Route } from "../../resources/decorator/routeDecorator.js";
 
-@Route("/auth")
 export class AuthRoutes {
     public router = Router();
     private authController = new AuthController();

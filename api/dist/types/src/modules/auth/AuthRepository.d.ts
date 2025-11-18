@@ -3,7 +3,7 @@ export declare class AuthRepository {
     private prisma;
     getByEmail(email: string): Promise<User | null>;
     getById(id: string): Promise<User | null>;
-    create(email: string, password: string, cpf: string, name: string): Promise<User | null>;
+    create(email: string, password: string, cpf: string, name: string): Promise<User>;
     update(id: string, data: Partial<User>): Promise<User>;
     delete(id: string): Promise<User>;
 }

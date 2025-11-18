@@ -20,7 +20,7 @@ export class AuthRepository {
         password: string,
         cpf: string,
         name: string,
-    ) : Promise<User | null>  {
+    ) : Promise<User>  {
         return await this.prisma.user.create({
             data: {
                 email: email,
