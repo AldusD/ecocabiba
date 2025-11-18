@@ -1,0 +1,30 @@
+import {} from "express";
+import { AuthService } from "./AuthService.js";
+export class AuthController {
+    authService;
+    constructor(authService = new AuthService()) {
+        this.authService = authService;
+    }
+    async login(req, res) {
+        try {
+            const { email, password } = req.body;
+            const token = await this.authService.authUser(email, password);
+            res.status(200).json({ token });
+        }
+        catch {
+            res.status(400).send({ error: "Invalid credentials" });
+        }
+    }
+    ;
+    async register(req, res) {
+        try {
+            const { email, password, cpf, name } = req.body;
+            const token = await this.authService.registerUser(email, password, cpf, name);
+            res.json({ token });
+        }
+        catch (err) {
+            res.status(400).send({ error: err.message });
+        }
+    }
+}
+//# sourceMappingURL=AuthController.js.map

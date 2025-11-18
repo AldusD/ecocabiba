@@ -4,14 +4,23 @@ import { AuthService } from "./AuthService.js";
 export class AuthController {
     constructor(private authService: AuthService = new AuthService()) {}
 
-    login (req: Request, res: Response) {
+    async login (req: Request, res: Response) {
         try {
-            const email = "aa@aa.com";
-            const password = "topSecret";
-            const token = this.authService.authUser(email, password);
-            res.json({ token });
+            const { email, password } = req.body;
+            const token = await this.authService.authUser(email, password);
+            res.status(200).json({token});
         } catch {
             res.status(400).send({ error: "Invalid credentials" });
+        }
+    };
+
+    async register (req: Request, res: Response) {
+        try {
+            const { email, password, cpf, name } = req.body;
+            const token = await this.authService.registerUser(email, password, cpf, name);
+            res.json({ token });
+        } catch(err: any) {
+            res.status(400).send({ error: err.message });
         }
     }
 }

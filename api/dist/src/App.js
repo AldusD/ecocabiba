@@ -1,0 +1,32 @@
+import express, {} from 'express';
+import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
+import { AuthRoutes } from './modules/auth/AuthRoutes.js';
+import dotenv from 'dotenv';
+dotenv.config();
+// Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
+import './modules/auth/AuthRoutes.js';
+export default class App {
+    app;
+    port;
+    authRouter = new AuthRoutes();
+    constructor(port = 8080) {
+        this.app = express();
+        this.port = port;
+        this.app.use(express.json());
+        this.setupRoutes();
+    }
+    setupRoutes() {
+        this.app.get('/', (req, res) => {
+            res.json({ message: 'Hello World' });
+        });
+        this.app.use('/auth', this.authRouter.router);
+    }
+    start() {
+        this.app.listen(this.port, () => {
+            console.log(`Server running on http://localhost:${this.port}`);
+        });
+    }
+}
+const app = new App(8080);
+app.start();
+//# sourceMappingURL=App.js.map
