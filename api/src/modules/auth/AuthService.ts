@@ -1,5 +1,6 @@
 import { AuthRepository } from "./AuthRepository.js";
 import { generateAccessToken } from "../../utils/jwt.utils.js"
+import { generateInvitationCode } from "../../utils/invitationCode.utils.js";
 import bcrypt from "bcrypt";
 
 export class AuthService {
@@ -21,18 +22,43 @@ export class AuthService {
         email: string,
         password: string,
         cpf: string,
-        name: string
+        name: string,
+        invitationCode: string
     ) : Promise<string> {
         const dbUser = await this.authRepository.getByEmail(email);
         
         if (dbUser) throw new Error("Email already registered!");
         
         password = await bcrypt.hash(password, 10);
-        console.log('hi')
 
-        const user = await this.authRepository.create(email, password, cpf, name);
+        if (invitationCode) {
+            const inviterUser = await this.authRepository.getByInvitationCode(invitationCode);
+
+            if (!inviterUser) {
+                throw new Error("Invalid invitation code!");
+            }
+
+            
+        }
+
+        let attempts = 0;
+        const maxAttempts = 5;
+        while (attempts < maxAttempts) {
+            try {
+                const invitationCode = generateInvitationCode();
+                const user = await this.authRepository.create(email, password, cpf, name, invitationCode);
+            
+                const token = generateAccessToken(user.id);
+                return token;
+            } catch (err: any) {
+                if (err.code === 'P2002') { // Prisma unique constraint error
+                    attempts++;
+                    continue;
+                }
+                throw err;
+            }
+        }
         
-        const token = generateAccessToken(user.id);
-        return token;
+        throw new Error('Could not generate unique invitation code');
     }
 }

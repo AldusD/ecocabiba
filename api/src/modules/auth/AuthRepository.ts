@@ -15,11 +15,18 @@ export class AuthRepository {
         });
     }
 
+    async getByInvitationCode(invitationCode: string): Promise<User | null> {
+        return await this.prisma.user.findUnique({
+            where: { invitationCode: invitationCode }
+        });
+    }
+
     async create (
         email: string,
         password: string,
         cpf: string,
         name: string,
+        invitationCode: string
     ) : Promise<User>  {
         return await this.prisma.user.create({
             data: {
@@ -27,6 +34,7 @@ export class AuthRepository {
                 password: password,
                 cpf: cpf,
                 name: name,
+                invitationCode: invitationCode
             }
         })
     }
