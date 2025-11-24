@@ -9,5 +9,10 @@ export default Object.freeze({
     WRONG_RED: "#E57373",
     WHATSAPP: "#25D366",
     INSTAGRAM: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
-    FIRE_STATUS: "#FF6B00"
+    FIRE_STATUS: "#FF6B00",
+    BLOCKED_TEXT: "#A9A9A9",
+    HOME_BG: "#011318",
+    SECONDARY_TEXT: "#555555",
+    HIGHLIGHT: "#E0E0E0",
+    BORDER: "#D0D0D0",
 });

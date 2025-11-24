@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import enums from "../../../../../../enums";
+import enums from "../../../../../enums/";
 
 export const ShareSectionCard = styled.section`
   /* Base .card styles (approximated) */
