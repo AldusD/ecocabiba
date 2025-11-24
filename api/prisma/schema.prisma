@@ -21,4 +21,14 @@ model User {
   cpf            String @unique
   invitationCode String @unique
   password       String
+
+  recyclesMade RecyclesMade[]
+}
+
+model RecyclesMade {
+  id       String   @id @default(uuid()) @db.VarChar(36)
+  userId   String
+  doneDate DateTime
+
+  user User @relation(fields: [userId], references: [id])
 }

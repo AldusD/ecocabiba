@@ -7,4 +7,9 @@ export * from './enums.js';
  *
  */
 export type User = Prisma.UserModel;
+/**
+ * Model RecyclesMade
+ *
+ */
+export type RecyclesMade = Prisma.RecyclesMadeModel;
 //# sourceMappingURL=browser.d.ts.map

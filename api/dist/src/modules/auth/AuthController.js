@@ -18,8 +18,8 @@ export class AuthController {
     ;
     async register(req, res) {
         try {
-            const { email, password, cpf, name } = req.body;
-            const token = await this.authService.registerUser(email, password, cpf, name);
+            const { email, password, cpf, name, invitationCode } = req.body;
+            const token = await this.authService.registerUser(email, password, cpf, name, invitationCode);
             res.json({ token });
         }
         catch (err) {

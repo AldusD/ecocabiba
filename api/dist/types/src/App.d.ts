@@ -2,7 +2,6 @@ import './modules/auth/AuthRoutes.js';
 export default class App {
     private app;
     private port;
-    private authRouter;
     constructor(port?: number);
     setupRoutes(): void;
     start(): void;

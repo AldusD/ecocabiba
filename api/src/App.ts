@@ -1,6 +1,5 @@
 import express, { type Application } from 'express';
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
-import {AuthRoutes} from './modules/auth/AuthRoutes.js'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -8,11 +7,10 @@ dotenv.config();
 // Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
 import './modules/auth/AuthRoutes.js';
 
-
+@AppRoutes
 export default class App {
   private app: Application;
   private port: number;
-  private authRouter = new AuthRoutes();
 
   constructor(port = 8080) {
     this.app = express();
@@ -25,7 +23,6 @@ export default class App {
     this.app.get('/', (req: any, res: any) => {
       res.json({ message: 'Hello World' });
     });
-    this.app.use('/auth', this.authRouter.router);
   }
 
   start() {

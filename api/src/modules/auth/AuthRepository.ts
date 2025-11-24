@@ -9,6 +9,12 @@ export class AuthRepository {
         })
     }
 
+    async getByCPF (cpf: string) : Promise<User | null> {
+        return await this.prisma.user.findUnique({
+            where: { cpf: cpf }
+        })
+    }
+
     async getById(id: string): Promise<User | null> {
         return await this.prisma.user.findUnique({
             where: { id }

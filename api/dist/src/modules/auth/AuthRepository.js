@@ -6,18 +6,29 @@ export class AuthRepository {
             where: { email: email }
         });
     }
+    async getByCPF(cpf) {
+        return await this.prisma.user.findUnique({
+            where: { cpf: cpf }
+        });
+    }
     async getById(id) {
         return await this.prisma.user.findUnique({
             where: { id }
         });
     }
-    async create(email, password, cpf, name) {
+    async getByInvitationCode(invitationCode) {
+        return await this.prisma.user.findUnique({
+            where: { invitationCode: invitationCode }
+        });
+    }
+    async create(email, password, cpf, name, invitationCode) {
         return await this.prisma.user.create({
             data: {
                 email: email,
                 password: password,
                 cpf: cpf,
                 name: name,
+                invitationCode: invitationCode
             }
         });
     }

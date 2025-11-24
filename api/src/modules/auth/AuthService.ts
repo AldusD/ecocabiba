@@ -25,33 +25,38 @@ export class AuthService {
         name: string,
         invitationCode: string
     ) : Promise<string> {
-        const dbUser = await this.authRepository.getByEmail(email);
-        
+
+        // Email validation
+        let dbUser = await this.authRepository.getByEmail(email);
         if (dbUser) throw new Error("Email already registered!");
+
+        // CPF validation
+        dbUser = await this.authRepository.getByCPF(cpf);
+        if (dbUser) throw new Error("CPF already registered!")
         
-        password = await bcrypt.hash(password, 10);
-
-        if (invitationCode) {
-            const inviterUser = await this.authRepository.getByInvitationCode(invitationCode);
-
-            if (!inviterUser) {
-                throw new Error("Invalid invitation code!");
-            }
-
             
-        }
+            if (invitationCode) {
+                const inviterUser = await this.authRepository.getByInvitationCode(invitationCode);
+                
+                if (!inviterUser) {
+                    throw new Error("Invalid invitation code!");
+                }
+                
+            }
+            
+            let attempts = 0;
+            const maxAttempts = 5;
+            while (attempts < maxAttempts) {
+                try {
+                    const invitationCode = generateInvitationCode();
 
-        let attempts = 0;
-        const maxAttempts = 5;
-        while (attempts < maxAttempts) {
-            try {
-                const invitationCode = generateInvitationCode();
-                const user = await this.authRepository.create(email, password, cpf, name, invitationCode);
+                    password = await bcrypt.hash(password, 10);
+                    const user = await this.authRepository.create(email, password, cpf, name, invitationCode);
             
                 const token = generateAccessToken(user.id);
                 return token;
             } catch (err: any) {
-                if (err.code === 'P2002') { // Prisma unique constraint error
+                if (err.code === 'P2002') {
                     attempts++;
                     continue;
                 }
