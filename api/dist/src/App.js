@@ -8,11 +8,13 @@ import express, {} from 'express';
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 // Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
 import './modules/auth/AuthRoutes.js';
+import './modules/quiz/QuizRoutes.js';
 let App = class App {
     app;
     port;
     constructor(port = 8080) {
         this.app = express();
+        this.app.use(express.json());
         this.port = port;
         this.setupRoutes();
     }

@@ -1,15 +1,11 @@
-export class Quiz {
+export class QuizSchema {
     id;
     type;
     questions;
-    constructor(type, questions) {
+    constructor(id, type, questions) {
+        this.id = id;
         this.type = type;
         this.questions = questions;
-    }
-    static ofDbQuiz(dbQuiz) {
-        const quiz = new Quiz(dbQuiz.getType(), dbQuiz.getQuestions());
-        quiz.setId(dbQuiz.getId());
-        return quiz;
     }
     getId() { return this.id; }
     getType() { return this.type; }
@@ -18,4 +14,4 @@ export class Quiz {
     setType(type) { this.type = type; }
     setQuestions(questions) { this.questions = questions; }
 }
-//# sourceMappingURL=Quiz.js.map
+//# sourceMappingURL=QuizSchema.js.map
