@@ -29,6 +29,7 @@ export default function Quiz({ closeQuiz }) {
     correctCount, setCorrectCount,
     imageStr, setImageStr,
     timeEnded, setTimeEnded,
+    quizData, setQuizData,
     isLastQuestion: () => {currentIndex === quizData.questions.length - 1}
   });
 

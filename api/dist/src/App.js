@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import express, {} from 'express';
+import cors from "cors";
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 // Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
 import './modules/auth/AuthRoutes.js';
@@ -14,6 +15,7 @@ let App = class App {
     port;
     constructor(port = 8080) {
         this.app = express();
+        this.app.use(cors({ origin: "*" }));
         this.app.use(express.json());
         this.port = port;
         this.setupRoutes();

@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -15,22 +14,35 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid()) @db.VarChar(36)
-  name     String
-  email    String @unique
-  cpf      String @unique
-  password String
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  cpf         String        @unique
+  password    String
+  QuizAttempt QuizAttempt[]
 }
 
 model Quiz {
-  id       String @id @default(uuid()) @db.VarChar(36)
-  type     Int
+  id        Int           @id @default(autoincrement())
+  type      Int
   questions Question[]
+  attempts  QuizAttempt[]
 }
 
 model Question {
-  id            String @id @default(uuid()) @db.VarChar(36)
-  quizId        String @db.VarChar(36)
-  title         String 
-  alternatives  String
+  id           Int    @id @default(autoincrement())
+  quizId       Int
+  title        String
+  alternatives String
+  Quiz         Quiz   @relation(fields: [quizId], references: [id])
+}
+
+model QuizAttempt {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  quizId    Int
+  status    Int
+  createdAt DateTime @default(now())
+  Quiz      Quiz     @relation(fields: [quizId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
 }

@@ -1,6 +1,7 @@
 export enum HttpStatusEnum {
     OK = 200,
     CREATED = 201,
+    UNPROCESSABLE_ENTITY = 422,
     TOO_MANY_REQUESTS = 429,
     INTERNAL_SERVER_ERROR = 500
 }

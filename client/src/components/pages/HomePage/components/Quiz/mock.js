@@ -60,6 +60,6 @@ const questionsMock = [
 
 export default {
     id: 1,
-    type: enums.QUIZ_TYPES.HEALTH,
+    type: enums.QUIZ_TYPES.HEALTH.title,
     questions: questionsMock,
 };

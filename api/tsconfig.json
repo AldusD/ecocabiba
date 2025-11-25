@@ -47,6 +47,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "prisma/generated"],
   "exclude": ["node_modules", "dist"]
 }

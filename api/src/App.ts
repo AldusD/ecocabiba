@@ -1,4 +1,5 @@
 import express, { type Application } from 'express';
+import cors from "cors";
 import { AppRoutes } from './resources/decorator/appRoutesDecorator.js';
 
 
@@ -14,6 +15,7 @@ export default class App {
 
   constructor(port = 8080) {
     this.app = express();
+    this.app.use(cors({ origin: "*" }));
     this.app.use(express.json());
     this.port = port;
     this.setupRoutes();

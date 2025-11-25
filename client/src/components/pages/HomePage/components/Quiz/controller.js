@@ -1,4 +1,5 @@
 import DEFAULT_IMAGE from "../../../../../assets/nature.png";
+import useQuizServer from "../../../../../hooks/api/useQuizServer";
 
 export const ANSWER_BENCHMARK = 3;
 export const TIME_TO_ANSWER = 30;
@@ -16,6 +17,7 @@ export default function controller({
     imageStr, setImageStr,
     correctCount, setCorrectCount,
     timeEnded, setTimeEnded,
+    quizData, setQuizData,
     isLastQuestion}
 ) {
     function getNextQuestion() {
@@ -28,8 +30,9 @@ export default function controller({
     }, TIME_TO_NEXT_QUESTION);
     }
 
-    function sendQuizAttempt() {
-        console.log('cabouse') // todo roque, substituir por chamada na api
+    async function sendQuizAttempt() {
+      const reponse = await useQuizServer.postQuizAttempt({ correctCount, quizId: quizData.id });
+      console.log("todo roque", reponse, { correctCount, quizId: quizData.id }); // todo roque remover
     }
 
     function choiceImage() {

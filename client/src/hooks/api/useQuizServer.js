@@ -1,9 +1,7 @@
-import { useQuery, useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
+// import { useQuery, useMutation } from "react-query";
 
 
-const API = process.env.REACT_APP_API_BASE_URL;
+const API = import.meta.env.VITE_API_URL;
 
 async function getQuiz(quizType) {
   console.log(API); // todo roque remover
@@ -13,14 +11,18 @@ async function getQuiz(quizType) {
   return data;
 }
 
-async function postQuizAttempt(attemptData) {
-  const options = { headers: { 'Content-Type': 'application/json' }, method: 'POST', body: JSON.stringify(attemptData) };
-  const response = await fetch(`${API}/auth/sign-up`, options);
+export async function postQuizAttempt(attemptData) {
+  const options = { headers: { 'Content-Type': 'application/json' }, method: 'POST', body: JSON.stringify({correctCount: attemptData.correctCount}) };
+  const response = await fetch(`${API}/quiz/attempt/${attemptData.quizId}`, options);
   const data = response.text();
   return data;
 }
 
-export default getQuiz;
+export default {
+  postQuizAttempt
+}
+
+//export default getQuiz;
 
 //////////////////////
 
