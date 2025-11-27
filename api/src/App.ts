@@ -7,14 +7,14 @@ dotenv.config();
 
 // Theese imports forces decorator @AppRoutes render routes, this is not desired, if youre able to fix it, please do :)
 import './modules/auth/AuthRoutes.js';
+import './modules/recycles/RecycleRoutes.js';
 
 
-
+@AppRoutes
 export default class App {
   private app: Application;
   private port: number;
   private authRouter = new AuthRoutes();
-  private recycleRouter = new RecycleRoutes()
 
   constructor(port = 8080) {
     this.app = express();
@@ -28,7 +28,6 @@ export default class App {
       res.json({ message: 'Hello World' });
     });
     this.app.use('/auth', this.authRouter.router);
-    this.app.use('/recycle', this.recycleRouter.router)
   }
 
   start() {

@@ -59,13 +59,11 @@ export class RecycleRepository{
 }
     
     async create (
-            id: string,
             userId: string,
-            doneDate: string,
+            doneDate: Date,
         ) : Promise<RecyclesMade>  {
             return await this.prisma.recyclesMade.create({
                 data: {
-                    id: id,
                     userId: userId,
                     doneDate: doneDate,
                 }

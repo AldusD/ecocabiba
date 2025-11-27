@@ -17,7 +17,7 @@ const config = {
             "value": "prisma-client"
         },
         "output": {
-            "value": "C:\\Users\\Nóbrega\\ecocapiba\\api\\src\\generated\\prisma",
+            "value": "/home/CIN/gnsb/ecocapiba/api/src/generated/prisma",
             "fromEnvVar": null
         },
         "config": {
@@ -26,12 +26,12 @@ const config = {
         "binaryTargets": [
             {
                 "fromEnvVar": null,
-                "value": "windows",
+                "value": "debian-openssl-3.0.x",
                 "native": true
             }
         ],
         "previewFeatures": [],
-        "sourceFilePath": "C:\\Users\\Nóbrega\\ecocapiba\\api\\prisma\\schema.prisma",
+        "sourceFilePath": "/home/CIN/gnsb/ecocapiba/api/prisma/schema.prisma",
         "isCustomOutput": true
     },
     "relativePath": "../../../prisma",
@@ -41,6 +41,7 @@ const config = {
         "db"
     ],
     "activeProvider": "postgresql",
+    "postinstall": false,
     "inlineDatasources": {
         "db": {
             "url": {

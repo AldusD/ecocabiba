@@ -5,7 +5,7 @@ export declare class RecycleRepository {
     getRecyclesByDate(userId: string, doneDate: Date): Promise<Date | null>;
     getRecyclesByUserId(userId: string): Promise<RecyclesMade[] | null>;
     getDaysRecycledInMonth(userId: string, month: number, year: number): Promise<number[]>;
-    create(id: string, userId: string, doneDate: string): Promise<RecyclesMade>;
+    create(userId: string, doneDate: Date): Promise<RecyclesMade>;
     delete(id: string): Promise<RecyclesMade>;
 }
 //# sourceMappingURL=RecycleRepository.d.ts.map

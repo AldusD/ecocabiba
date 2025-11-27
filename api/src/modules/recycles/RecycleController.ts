@@ -19,4 +19,17 @@ export class RecycleController {
         }
     }
 
+    async create(req: Request, res: Response){
+
+        try{
+            const {userId, doneDate} = req.body
+            
+            const registerRecycle = await this.recycleService.registerRecycle(userId, new Date(doneDate))
+            return res.status(200).json({ registerRecycle })
+
+        }catch(error){
+            return res.status(500).json({ error: "Failed to create recycle!"})
+        }
+    }
+
 }

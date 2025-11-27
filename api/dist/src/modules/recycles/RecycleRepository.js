@@ -42,10 +42,9 @@ export class RecycleRepository {
         });
         return recycles.map((r) => r.doneDate.getDate());
     }
-    async create(id, userId, doneDate) {
+    async create(userId, doneDate) {
         return await this.prisma.recyclesMade.create({
             data: {
-                id: id,
                 userId: userId,
                 doneDate: doneDate,
             }

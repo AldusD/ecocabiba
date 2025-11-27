@@ -1,9 +1,9 @@
 import './modules/auth/AuthRoutes.js';
+import './modules/recycles/RecycleRoutes.js';
 export default class App {
     private app;
     private port;
     private authRouter;
-    private recycleRouter;
     constructor(port?: number);
     setupRoutes(): void;
     start(): void;
