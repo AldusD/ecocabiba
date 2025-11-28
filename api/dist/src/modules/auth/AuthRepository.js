@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../generated/prisma/client.js";
+import { PrismaClient } from "@prisma/client";
 export class AuthRepository {
     prisma = new PrismaClient();
     async getByEmail(email) {

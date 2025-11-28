@@ -38,27 +38,28 @@ const alternatives5 = [
 const questionsMock = [
     {
         title: "O mosquito Aedes aegypti, transmissor da dengue, zika e chikungunya, se reproduz principalmente em:",
-        questions: alternatives1,
+        options: alternatives1,
     },
     {
         title: "Uma forma eficaz de evitar a proliferação do mosquito da dengue é:",
-        questions: alternatives2,
+        options: alternatives2,
     },
     {
         title: "A relação entre o homem e o mosquito Aedes aegypti é um exemplo de:",
-        questions: alternatives3,
+        options: alternatives3,
     },
     {
         title: "O aumento de casos de dengue está relacionado a fatores ecológicos como:",
-        questions: alternatives4,
+        options: alternatives4,
     },
     {
         title: "Qual destas atitudes ajuda na preservação ambiental e na prevenção de doenças?",
-        questions: alternatives5,
+        options: alternatives5,
     },
 ];
 
 export default {
-    type: enums.QUIZ_TYPES.HEALTH,
+    id: 1,
+    type: enums.QUIZ_TYPES.HEALTH.title,
     questions: questionsMock,
 };

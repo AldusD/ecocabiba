@@ -26,9 +26,6 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-  "declarationDir": "./dist/types",
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -50,6 +47,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "prisma/generated"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,4 +1,3 @@
-import {} from "express";
 import { AuthService } from "./AuthService.js";
 export class AuthController {
     authService;

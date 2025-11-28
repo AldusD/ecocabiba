@@ -1,4 +1,4 @@
-import { PrismaClient, type User } from "../../generated/prisma/client.js";
+import { PrismaClient, type User } from "@prisma/client";
 
 export class AuthRepository {
     private prisma = new PrismaClient();
@@ -15,7 +15,7 @@ export class AuthRepository {
         })
     }
 
-    async getById(id: string): Promise<User | null> {
+    async getById(id: number): Promise<User | null> {
         return await this.prisma.user.findUnique({
             where: { id }
         });
@@ -45,14 +45,14 @@ export class AuthRepository {
         })
     }
 
-    async update(id: string, data: Partial<User>): Promise<User> {
+    async update(id: number, data: Partial<User>): Promise<User> {
         return await this.prisma.user.update({
         where: { id },
         data
         });
     }
 
-    async delete(id: string): Promise<User> {
+    async delete(id: number): Promise<User> {
         return await this.prisma.user.delete({
         where: { id }
         });

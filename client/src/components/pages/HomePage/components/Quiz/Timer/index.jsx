@@ -2,20 +2,22 @@ import { useEffect, useState } from "react";
 import Icons from "../../../../../shared/Icons";
 import { TimerStyles } from "./styles";
 
-export default function Timer({ startTime, triggerTimeout }) {
+export default function Timer({ startTime, triggerTimeEnded }) {
     const [time, setTime] = useState(startTime);
-
-    function handleTime(currentTime) {
-        if (currentTime < 0) return triggerTimeout();
-        setTime(currentTime);
-        setTimeout(() => {
-            handleTime(currentTime - 1);
-        }, 1000)
-    }
+    const ONE_SECOND = 1000;
 
     useEffect(() => {
-        handleTime(startTime);
-    }, []);
+        if (time <= 0) {
+            triggerTimeEnded();
+            return;
+        }
+
+        const timerInterval = setInterval(() => {
+            setTime(t => t -1);
+        }, ONE_SECOND);
+
+        return () => clearInterval(timerInterval);
+    }, [time])
 
     return (
         <TimerStyles>

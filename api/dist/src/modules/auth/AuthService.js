@@ -14,13 +14,14 @@ export class AuthService {
         return token;
     }
     async registerUser(email, password, cpf, name, invitationCode) {
+        // Email validation
         let dbUser = await this.authRepository.getByEmail(email);
         if (dbUser)
             throw new Error("Email already registered!");
+        // CPF validation
         dbUser = await this.authRepository.getByCPF(cpf);
         if (dbUser)
             throw new Error("CPF already registered!");
-        password = await bcrypt.hash(password, 10);
         if (invitationCode) {
             const inviterUser = await this.authRepository.getByInvitationCode(invitationCode);
             if (!inviterUser) {
@@ -32,7 +33,7 @@ export class AuthService {
         while (attempts < maxAttempts) {
             try {
                 const invitationCode = generateInvitationCode();
-                console.log(invitationCode);
+                password = await bcrypt.hash(password, 10);
                 const user = await this.authRepository.create(email, password, cpf, name, invitationCode);
                 const token = generateAccessToken(user.id);
                 return token;
